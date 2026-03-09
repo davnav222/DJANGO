@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block contenido %}
+<div class="card p-4 border-0 bg-white shadow-sm">
+    <h3>Nueva Venta</h3>
+    <form method="POST">
+        {% csrf_token %}
+        <div class="mb-3"><input type="text" name="codigo" class="form-control" placeholder="Código de factura" required></div>
+        <div class="mb-3">
+            <select name="cliente" class="form-select" required>
+                <option value="">Seleccione Cliente...</option>
+                {% for c in clientes %}<option value="{{ c.id }}">{{ c.nombre }}</option>{% endfor %}
+            </select>
+        </div>
+        <div class="mb-3">
+            <select name="producto" class="form-select" required>
+                <option value="">Seleccione Producto...</option>
+                {% for p in productos %}<option value="{{ p.id }}">{{ p.nombre }} ({{ p.precio }}€)</option>{% endfor %}
+            </select>
+        </div>
+        <div class="mb-3"><input type="number" name="cantidad" class="form-control" value="1" min="1"></div>
+        <button type="submit" class="btn btn-dark w-100">FINALIZAR VENTA</button>
+    </form>
+</div>
+{% endblock %}

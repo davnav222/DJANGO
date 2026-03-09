@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block contenido %}
+<div class="card p-4 border-0 bg-white shadow-sm">
+    <h3>Alta de Cliente</h3>
+    <form method="POST">
+        {% csrf_token %}
+        <div class="mb-3"><input type="text" name="nombre" class="form-control" placeholder="Nombre completo" required></div>
+        <button type="submit" class="btn btn-primary">Registrar Cliente</button>
+    </form>
+</div>
+{% endblock %}

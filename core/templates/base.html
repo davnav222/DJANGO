@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>DJANGO</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+/* RESET y tipografía */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #eef2f5;
+    color: #333;
+}
+
+/* CABECERA */
+.header-top {
+    background: linear-gradient(90deg, #3f88c5, #6fa3ef);
+    color: white;
+    text-align: center;
+    padding: 20px 10px;
+    font-weight: bold;
+    font-size: 28px;
+    border-radius: 0 0 15px 15px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+    text-transform: uppercase;
+}
+
+/* NAVBAR */
+.navbar-custom {
+    background-color: #607d8b; /* gris azulado */
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    padding: 12px 0;
+    border-radius: 15px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.navbar-custom a,
+.navbar-custom .dropdown-toggle {
+    color: #f5f5f5 !important;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+.navbar-custom a:hover,
+.navbar-custom .dropdown-toggle:hover {
+    color: #ffd166 !important; /* amarillo suave al pasar el mouse */
+}
+
+/* DROPDOWN */
+.dropdown-menu {
+    border-radius: 10px;
+    min-width: 150px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    background-color: #ffffff !important; /* asegúrate que sea blanco */
+}
+
+/* DROPDOWN ITEMS */
+.dropdown-menu .dropdown-item {
+    color: #111 !important;       /* negro intenso */
+    font-weight: 600;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.dropdown-menu .dropdown-item:hover,
+.dropdown-menu .dropdown-item:focus {
+    background-color: #cce4f6 !important; /* azul muy suave al pasar el mouse */
+    color: #000 !important;               /* negro al pasar */
+}
+
+/* MAIN CONTENT */
+.main-wrapper {
+    display: block;
+    padding: 20px 10px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.content-area {
+    background-color: #ffffff;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    min-height: 400px;
+}
+
+/* BOTONES */
+button, .btn {
+    background-color: #4caf7c; /* verde suave */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+button:hover, .btn:hover {
+    background-color: #357a5f; /* verde más oscuro al pasar */
+}
+
+/* FOOTER */
+.footer-custom {
+    background-color: #455a64; /* gris oscuro */
+    color: #f5f5f5;
+    text-align: center;
+    padding: 15px 10px;
+    border-radius: 15px;
+    margin: 20px 10px 0 10px;
+    font-size: 14px;
+    box-shadow: 0 -2px 6px rgba(0,0,0,0.1);
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .navbar-custom {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .content-area {
+        padding: 20px;
+    }
+}
+    </style>
+</head>
+<body>
+
+    <div class="header-top">
+<!        {% if config %}{{ config.nombre_empresa }}{% else %}DJANGO{% endif %} >
+    </div>
+
+    <nav class="navbar-custom">
+        <a href="{% url 'inicio' %}">Inicio</a>
+        
+        <div class="dropdown">
+            <a class="dropdown-toggle" href="#" data-bs-toggle="dropdown">Productos</a>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="{% url 'alta_producto' %}">Alta</a></li>
+                <li><a class="dropdown-item" href="{% url 'lista_productos' %}">Listado</a></li>
+            </ul>
+        </div>
+
+        <div class="dropdown">
+            <a class="dropdown-toggle" href="#" data-bs-toggle="dropdown">Secciones</a>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="{% url 'alta_seccion' %}">Alta</a></li>
+                <li><a class="dropdown-item" href="{% url 'lista_secciones' %}">Listado</a></li>
+            </ul>
+        </div>
+
+        <div class="dropdown">
+            <a class="dropdown-toggle" href="#" data-bs-toggle="dropdown">Clientes</a>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="{% url 'alta_cliente' %}">Alta</a></li>
+                <li><a class="dropdown-item" href="{% url 'lista_clientes' %}">Listado</a></li>
+            </ul>
+        </div>
+
+        <div class="dropdown">
+            <a class="dropdown-toggle" href="#" data-bs-toggle="dropdown">Ventas</a>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="{% url 'alta_venta' %}">Alta</a></li>
+                <li><a class="dropdown-item" href="{% url 'lista_ventas' %}">Listado</a></li>
+            </ul>
+        </div>
+
+{% comment %}
+<a href="{% url 'configuracion' %}" style="border-left: 2px solid black; padding-left: 15px;">
+    Configuración
+</a>
+{% endcomment %}
+    </nav>
+{% comment %}
+    <div class="main-wrapper">
+        <aside class="sidebar">
+            Menú lateral
+            <hr>
+            <div style="font-size: 14px; font-weight: normal;">
+                {% if config %}
+                    <p><strong>CIF:</strong> {{ config.cif }}</p>
+                    <p><strong>IVA:</strong> {{ config.iva_general }}%</p>
+                {% endif %}
+            </div>
+        </aside>
+{% endcomment %}
+        <main class="content-area">
+            {% block contenido %}
+            {% endblock %}
+        </main>
+    </div>
+
+    <div class="footer-custom">
+        Página diseñada por David Navas | 
+        {% if config %}{{ config.nombre_empresa }}{% endif %} 
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

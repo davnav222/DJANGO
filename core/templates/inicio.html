@@ -1,0 +1,36 @@
+
+{% extends "base.html" %}
+
+{% block contenido %}
+{% comment %}
+<div class="text-center py-5">
+    <h1 class="display-4 fw-bold">Sistema de Gestión Django</h1>
+    <p class="lead text-muted">Examen 2º ASIR - Control de Ventas y Stock</p>
+    
+    <div class="row mt-5 g-4">
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm bg-light p-3">
+                <h4>Productos</h4>
+                <p>Gestiona el catálogo de artículos y sus precios.</p>
+                <a href="{% url 'lista_productos' %}" class="btn btn-outline-success">Ver inventario</a>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm bg-light p-3">
+                <h4>Ventas</h4>
+                <p>Registra nuevas transacciones y consulta el histórico.</p>
+                <a href="{% url 'lista_ventas' %}" class="btn btn-outline-primary">Ver ventas</a>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm bg-light p-3">
+                <h4>Clientes</h4>
+                <p>Administra la base de datos de compradores.</p>
+                <a href="{% url 'lista_clientes' %}" class="btn btn-outline-dark">Ver clientes</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endcomment %}
+{% endblock %}
+

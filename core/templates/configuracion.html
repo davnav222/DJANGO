@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block titulo_pantalla %}Configuración del Sistema{% endblock %}
+
+{% block contenido %}
+<div class="config-container p-4">
+    <h2 class="mb-4">Datos de la Empresa</h2>
+    <form method="POST">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label class="form-label fw-bold">Nombre de la Empresa:</label>
+                <input type="text" name="nombre" class="form-control rounded-3" value="{{ config.nombre_empresa }}" required>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label class="form-label fw-bold">CIF / NIF:</label>
+                <input type="text" name="cif" class="form-control rounded-3" value="{{ config.cif }}" required>
+            </div>
+            <div class="col-md-8 mb-3">
+                <label class="form-label fw-bold">Dirección Fiscal:</label>
+                <input type="text" name="direccion" class="form-control rounded-3" value="{{ config.direccion }}" required>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label class="form-label fw-bold">IVA General (%):</label>
+                <input type="number" step="0.1" name="iva" class="form-control rounded-3" value="{{ config.iva_general }}" required>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary w-100 rounded-pill py-3 fw-bold mt-3">
+            GUARDAR
+        </button>
+    </form>
+</div>
+
+<style>
+/* Contenedor principal */
+.config-container {
+    background-color: #ffffff; /* fondo blanco */
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    color: #333;
+}
+
+/* Labels */
+.config-container label {
+    font-weight: 600;
+    color: #444;
+}
+
+/* Inputs */
+.config-container .form-control {
+    border: 1px solid #ccc;
+    padding: 10px 12px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.config-container .form-control:focus {
+    border-color: #4caf7c; /* verde suave */
+    box-shadow: 0 0 5px rgba(76, 175, 124, 0.3);
+}
+
+/* Botón GUARDAR */
+.config-container .btn-primary {
+    background-color: #4caf7c;
+    border: none;
+    transition: background-color 0.3s;
+}
+
+.config-container .btn-primary:hover {
+    background-color: #357a5f;
+}
+</style>
+{% endblock %}
